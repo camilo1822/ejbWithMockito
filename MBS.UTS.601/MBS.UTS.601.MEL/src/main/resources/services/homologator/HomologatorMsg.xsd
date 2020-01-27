@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://nequi.co/services/util/homologator" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://nequi.co/services/util/homologator">
+
+    <element name="hmgRequest" type="tns:hmgRequestType"></element>
+
+    <element name="hmgResponse" type="tns:hmgResponseType"></element>
+
+    <complexType name="hmgRequestType">
+    	<sequence>
+    		<element name="header" type="tns:headerRequestType"></element>
+    		<element name="body" type="tns:bodyRequestType"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="hmgResponseType">
+    	<sequence>
+    		<element name="header" type="tns:headerResponseType"></element>
+    		<element name="body" type="tns:bodyResponseType"></element>
+    	</sequence>
+    </complexType>
+    
+    <element name="hmgRQ">
+    	<complexType>
+    		<sequence>
+    			<element ref="tns:hmgRequest"></element>
+    		</sequence>
+    	</complexType></element>
+
+    <element name="hmgRS">
+    	<complexType>
+    		<sequence>
+    			<element ref="tns:hmgResponse"></element>
+    		</sequence>
+    	</complexType></element>
+
+    <complexType name="headerRequestType">
+    	<sequence>
+    		<element name="messageId" type="string" minOccurs="1" maxOccurs="1"></element>
+    		<element name="consumer" type="tns:consumerType" minOccurs="1" maxOccurs="1"></element>
+    		<element name="messageDate" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="bodyRequestType">
+    	<sequence>
+    		<element name="errorCode" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="originSystem" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="destinationSystem" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="consumerType">
+    	<sequence>
+    		<element name="id" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="description" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="headerResponseType">
+    	<sequence>
+    		<element name="messageId" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="messageDate" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="status" type="tns:statusType" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="bodyResponseType">
+    	<sequence>
+    		<element name="outCode" type="string" minOccurs="1" maxOccurs="1"></element>
+    		<element name="outMessage" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="statusType">
+    	<sequence>
+    		<element name="code" type="string" minOccurs="1"
+    			maxOccurs="1">
+    		</element>
+    		<element name="description" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+</schema>

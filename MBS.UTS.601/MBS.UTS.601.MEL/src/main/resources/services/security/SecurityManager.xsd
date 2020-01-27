@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://nequi.co/services/util/SecurityManager"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://nequi.co/services/util/SecurityManager">
+
+	<element name="securityRQ">
+		<complexType>
+			<sequence>
+				<element ref="tns:securityRequest"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="securityRS">
+		<complexType>
+			<sequence>
+				<element ref="tns:securityResponse"></element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="securityRequest" type="tns:securityRequestType"></element>
+
+	<complexType name="securityRequestType">
+		<sequence>
+			<element name="header" type="tns:headerType" minOccurs="1"
+				maxOccurs="1"></element>
+			<element name="body" type="tns:bodyType" minOccurs="1"
+				maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<element name="securityResponse" type="tns:securityResponseType"></element>
+
+	<complexType name="securityResponseType">
+		<sequence>
+			<element name="header" type="tns:headerType" minOccurs="1"
+				maxOccurs="1"></element>
+			<element name="body" type="tns:bodyType" minOccurs="1"
+				maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="headerType">
+		<sequence>
+			<element name="messageID" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="messageDate" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="consumerID" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="phoneNumber" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="clientPublicKey" type="string" minOccurs="0"
+				maxOccurs="1"></element>
+			<element name="operation" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="status" type="tns:statusType" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="bodyType">
+		<choice>
+			<element name="clearMessage" type="string"></element>
+			<element name="protectMessage" type="string"></element>
+		</choice>
+	</complexType>
+
+
+	<complexType name="statusType">
+		<sequence>
+			<element name="code" type="string" minOccurs="1" maxOccurs="1"></element>
+			<element name="description" type="string" minOccurs="1"
+				maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+</schema>

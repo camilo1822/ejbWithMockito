@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+	<property scope="context" name="USER_HOME"
+		value="${LOGGER_PATH}/MBS_UtilServices_601" />
+	<property scope="context" name="FILE_NAME" value="${LOGGER_NAME}" />
+	<property scope="context" name="FILE_SIZE" value="${LOGGER_SIZE}" />
+
+	<turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+		<Marker>MarkerFilterAccept</Marker>
+		<OnMatch>ACCEPT</OnMatch>
+		<OnMismatch>NEUTRAL</OnMismatch>
+	</turboFilter>
+
+	<turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+		<Marker>MarkerFilterDenny</Marker>
+		<OnMatch>DENY</OnMatch>
+		<OnMismatch>NEUTRAL</OnMismatch>
+	</turboFilter>
+
+	<appender name="traceAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/log/trace/${FILE_NAME}.log</file>
+		<filter class="com.nequi.mdw.common.tracerv7.config.CustomFilter">
+			<levels>INFO</levels>
+		</filter>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${USER_HOME}/log/trace/archived/${FILE_NAME}.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${FILE_SIZE}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="errorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/log/error/${FILE_NAME}.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${USER_HOME}/log/error/archived/${FILE_NAME}.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${FILE_SIZE}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="debugAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${USER_HOME}/log/debug/${FILE_NAME}.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%d [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${USER_HOME}/log/debug/archived/${FILE_NAME}.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${FILE_SIZE}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<root level="ALL">
+		<appender-ref ref="traceAppender" />
+		<appender-ref ref="debugAppender" />
+		<appender-ref ref="errorAppender" />
+	</root>
+</configuration>

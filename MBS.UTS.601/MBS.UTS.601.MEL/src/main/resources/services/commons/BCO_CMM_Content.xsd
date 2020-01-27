@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://nequi.co/message/backout/common/Content"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://nequi.co/message/backout/common/Content">
+	<complexType name="contentType">
+		<sequence>
+			<element name="key" type="string"></element>
+			<element name="value" type="string"></element>
+		</sequence>
+	</complexType>
+</schema>

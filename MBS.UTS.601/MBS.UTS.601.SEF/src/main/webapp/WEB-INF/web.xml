@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>MBS.UTS.601.SEF</display-name>
+	<servlet>
+		<servlet-name>MDWServices</servlet-name>
+		<servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.nequi.uts601.config.ConfigServices</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MDWServices</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>test realm</realm-name>
+	</login-config>
+	<security-constraint>
+		<display-name>Recursos privados de la aplicación de SHERPA</display-name>
+		<web-resource-collection>
+			<web-resource-name>Recursos privados de la aplicación de SHERPA</web-resource-name>
+			<url-pattern>/rest/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>wasappusers</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<description>Users para consume de aplicaciones REST</description>
+		<role-name>wasappusers</role-name>
+	</security-role>
+</web-app>

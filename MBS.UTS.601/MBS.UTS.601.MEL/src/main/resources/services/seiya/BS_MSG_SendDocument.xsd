@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://nequi.co/message/bussines/services/senddocument"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://nequi.co/message/bussines/services/senddocument" xmlns:pref="http://nequi.co/message/backout/common/Content">
+	<import schemaLocation="../commons/BCO_CMM_Content.xsd" namespace="http://nequi.co/message/backout/common/Content"></import>
+	<element name="sendDocumentRQ" type="tns:sendDocumentRQType"></element>
+	<complexType name="sendDocumentRQType">
+		<sequence>
+			<element name="to" type="string" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="documentInfo" type="tns:documentInfoType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="parameterType" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="mailBodyId" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="extension" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="from" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="content" type="pref:contentType"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="password" type="string" minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+	<element name="sendDocumentRS" type="tns:sendDocumentRSType"></element>
+	<complexType name="sendDocumentRSType"></complexType>
+	<complexType name="documentInfoType">
+		<sequence>
+			<element name="info" type="string"></element>
+			<element name="parameterName" type="string"></element>
+			<element name="security" type="string"></element>
+			<element name="documentName" type="string"></element>
+		</sequence>
+	</complexType>
+</schema>

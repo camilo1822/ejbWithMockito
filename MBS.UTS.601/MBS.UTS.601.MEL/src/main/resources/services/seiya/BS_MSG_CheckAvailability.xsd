@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://nequi.co/message/bussines/services/checkavailability"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://nequi.co/message/bussines/services/checkavailability">
+	<element name="checkAvailabilityRQ" type="tns:checkAvailabilityRQType"></element>
+	<complexType name="checkAvailabilityRQType">
+		<sequence>
+			<element name="operation" type="string" minOccurs="1"
+				maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+	<element name="checkAvailabilityRS" type="tns:checkAvailabilityRSType"></element>
+	<complexType name="checkAvailabilityRSType"></complexType>
+</schema>

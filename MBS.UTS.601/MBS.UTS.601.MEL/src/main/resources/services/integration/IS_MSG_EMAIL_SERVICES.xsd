@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema
+	targetNamespace="http://nequi.co/message/integration/services/email401/operations"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://nequi.co/message/integration/services/email401/operations" xmlns:pref="http://nequi.co/message/backout/common/Content">
+
+
+	<import schemaLocation="../commons/BCO_CMM_Content.xsd" namespace="http://nequi.co/message/backout/common/Content"></import>
+	<element name="emailGeneralRequest"
+		type="tns:emailGeneralRequestType">
+	</element>
+	<complexType name="emailGeneralRequestType">
+		<sequence>
+			<element name="to" type="string" minOccurs="1"
+				maxOccurs="unbounded">
+			</element>
+			<element name="from" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="bodyId" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="file" type="string" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="name" type="string" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="content" type="pref:contentType" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="fileType" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="toCC" type="string" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+	</complexType>
+	<element name="emailGeneralResponse"
+		type="tns:emailGeneralResponseType">
+	</element>
+	<complexType name="emailGeneralResponseType"></complexType>
+</schema>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- THIS PRODUCT CONTAINS RESTRICTED MATERIALS OF IBM 5724-H88, 5724-J08, 
+	5724-I63, 5655-W65, COPYRIGHT International Business Machines Corp., 2015 
+	All Rights Reserved * Licensed Materials - Property of IBM US Government 
+	Users Restricted Rights - Use, duplication or disclosure restricted by GSA 
+	ADP Schedule Contract with IBM Corp. -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.nequi</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>MBS.UTS.601.EAR</artifactId>
+	<packaging>ear</packaging>
+	<name>MBS.UTS.601.EAR</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.nequi</groupId>
+			<artifactId>MBS.UTS.601.SEF</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.nequi</groupId>
+			<artifactId>MBS.UTS.601.SEC</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<version>6</version>
+					<modules>
+						<webModule>
+							<groupId>com.nequi</groupId>
+							<artifactId>MBS.UTS.601.SEF</artifactId>
+							<contextRoot>/MBS.UTS.601.SEF</contextRoot>
+						</webModule>
+					</modules>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<finalName>MBS.UtilServices.601</finalName>
+					<displayName>MBS.UtilServices.601</displayName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.orctom.mojo</groupId>
+				<artifactId>was-maven-plugin</artifactId>
+				<version>1.0.8</version>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+						<configuration>
+							<wasHome>${wasHome}</wasHome>
+							<applicationName>MBS.UtilServices.601</applicationName>
+							<host>${wasHost}</host>
+							<port>${wasPort}</port>
+							<cell>${wasCell}</cell>
+							<server>${wasServer}</server>
+							<node>${wasNode}</node>
+							<virtualHost>${wasVirtualHost}</virtualHost>
+							<user>${wasUser}</user>
+							<password>${wasPassword}</password>
+							<appuserHome>${wasProfile}</appuserHome>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
